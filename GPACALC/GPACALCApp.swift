@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct GPACALCApp: App {
@@ -13,5 +14,6 @@ struct GPACALCApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [gradeSettings.self, semesterDetails.self])
     }
 }
