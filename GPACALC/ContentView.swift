@@ -9,7 +9,8 @@ struct ContentView: View {
 
     @Query(sort: \semesterDetails.index)
     private var semesters: [semesterDetails]
-
+    
+    @State private var currSemester: semesterDetails? = nil
     @State private var semesterCount: Int = 0
 
     var body: some View {
@@ -99,6 +100,9 @@ struct ContentView: View {
                                     Label("Delete", systemImage: "trash")
                                 }
                             }
+                            .onTapGesture {
+                                currSemester = semester
+                            }
                     }
                 }
                 .listStyle(.plain)
@@ -122,6 +126,9 @@ struct ContentView: View {
                     }
                 }
             }
+            .fullScreenCover(item: $currSemester) { semester in
+                semesterView(semester: semester)
+            }
         }
     }
 }
@@ -142,9 +149,7 @@ func semesterCard(semester: semesterDetails) -> some View {
             Text("Scored Credits: 0.0")
                 .foregroundStyle(.secondary)
         }
-
         Spacer()
-
         VStack(alignment: .trailing, spacing: 6) {
             Text("GPA")
                 .font(.caption)

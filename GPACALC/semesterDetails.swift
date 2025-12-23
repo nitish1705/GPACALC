@@ -5,13 +5,10 @@ class semesterDetails {
     var index: Int
 
     @Relationship(deleteRule: .cascade)
-    var subjects: [Subject]
+    var subjects: [Subject] = []
 
-    init(
-        index: Int,
-        subjects: [Subject] = []
-    ) {
+    init(index: Int) {
         self.index = index
-        self.subjects = subjects
     }
 }
+
