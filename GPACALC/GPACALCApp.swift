@@ -14,6 +14,6 @@ struct GPACALCApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [gradeSettings.self, semesterDetails.self, Subject.self])
+        .modelContainer(for: [gradeSettingsModel.self, semesterDetails.self, Subject.self])
     }
 }

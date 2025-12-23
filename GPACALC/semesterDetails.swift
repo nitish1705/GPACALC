@@ -6,6 +6,9 @@ class semesterDetails {
 
     @Relationship(deleteRule: .cascade)
     var subjects: [Subject] = []
+    
+    @Relationship(deleteRule: .cascade)
+    var grades: [gradeSettingsModel] = []
 
     init(index: Int) {
         self.index = index
