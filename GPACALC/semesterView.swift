@@ -17,7 +17,7 @@ struct semesterView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var subjectToAdd: Subject? = nil
-    @State private var gradeToAdd = false
+    @State private var gradeToAdd:semesterDetails? = nil
     @ViewBuilder
     func subjectRow(_ subject: Subject) -> some View {
         VStack{
@@ -28,6 +28,7 @@ struct semesterView: View {
 
                 Text(String(format: "%.1f", subject.credit))
                     .frame(width: 50)
+                Spacer()
 
                 Text(subject.grade.isEmpty ? "-" : subject.grade)
                     .frame(width: 40)
@@ -151,7 +152,7 @@ struct semesterView: View {
                     }
                     ToolbarItem(placement: .topBarTrailing){
                         Button{
-                            gradeToAdd = true
+                            gradeToAdd = semester
                         } label: {
                             Image(systemName: "slider.horizontal.3")
                                 .foregroundStyle(Color("BGColor"))
@@ -164,8 +165,8 @@ struct semesterView: View {
                     addSubjectSheet(semester: semester)
                         .presentationDetents([.height(350)])
                 }
-                .navigationDestination(isPresented: $gradeToAdd){
-                    gradeSettings()
+                .navigationDestination(item: $gradeToAdd){semester in
+                    gradeSettings(semester: semester)
                 }
             }
         }

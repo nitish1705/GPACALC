@@ -38,9 +38,9 @@ struct ContentView: View {
                     Spacer()
 
                     Button {
-                        semesterCount += 1
+                        let nextIndex = semesters.count + 1
                         modelContext.insert(
-                            semesterDetails(index: semesterCount)
+                            semesterDetails(index: nextIndex)
                         )
                     } label: {
                         VStack(spacing: 6) {
