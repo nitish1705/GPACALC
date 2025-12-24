@@ -17,6 +17,7 @@ struct semesterView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var subjectToAdd: Subject? = nil
+    @State private var subjectToEdit: Subject? = nil
     @State private var gradeToAdd:semesterDetails? = nil
     @ViewBuilder
     func subjectRow(_ subject: Subject) -> some View {
@@ -98,10 +99,26 @@ struct semesterView: View {
                                     subjectRow(subject)
                                         .listRowInsets(EdgeInsets())
                                         .listRowSeparator(.hidden)
+                                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+
+                                            Button {
+                                                subjectToEdit = subject
+                                            } label: {
+                                                Label("Edit", systemImage: "pencil")
+                                            }
+                                            .tint(.blue)
+
+                                            Button(role: .destructive) {
+                                                if let index = semester.subjects.firstIndex(of: subject) {
+                                                    semester.subjects.remove(at: index)
+                                                }
+                                            } label: {
+                                                Label("Delete", systemImage: "trash")
+                                            }
+                                        }
                                 }
-                                .onDelete { indexSet in
-                                    semester.subjects.remove(atOffsets: indexSet)
-                                }
+
+                                
                             }
                         }
                         .listStyle(.plain)
@@ -165,6 +182,10 @@ struct semesterView: View {
                     addSubjectSheet(semester: semester)
                         .presentationDetents([.height(350)])
                 }
+                .sheet(item: $subjectToEdit){subject in
+                    editSubjectSheet(subject: subject)
+                        .presentationDetents([.height(350)])
+                }
                 .navigationDestination(item: $gradeToAdd){semester in
                     gradeSettings(semester: semester)
                 }
@@ -183,34 +204,34 @@ struct addSubjectSheet: View {
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
+                VStack(spacing: 20) {
 
-                TextField("Enter Subject Name", text: $newSubject)
-                    .padding(10)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.gray.opacity(0.15))
-                    )
+                    TextField("Enter Subject Name", text: $newSubject)
+                        .padding(10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.gray.opacity(0.15))
+                        )
 
-                TextField("Credit", value: $newCredit, format: .number)
-                    .keyboardType(.decimalPad)
-                    .padding(10)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.gray.opacity(0.15))
-                    )
+                    TextField("Credit", value: $newCredit, format: .number)
+                        .keyboardType(.decimalPad)
+                        .padding(10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.gray.opacity(0.15))
+                        )
 
-                TextField("Enter Grade", text: $newGrade)
-                    .padding(10)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.gray.opacity(0.15))
-                    )
+                    TextField("Enter Grade", text: $newGrade)
+                        .padding(10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.gray.opacity(0.15))
+                        )
 
-                Spacer()
-            }
-            .padding(.top, 30)
-            .padding(.horizontal)
+                    Spacer()
+                }
+                .padding(.top, 30)
+                .padding(.horizontal)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
@@ -230,6 +251,66 @@ struct addSubjectSheet: View {
                         dismiss()
                     } label: {
                         Image(systemName: "plus")
+                            .foregroundStyle(Color("BGColor"))
+                            .font(.system(size: 20, weight: .semibold))
+                    }
+                }
+            }
+        }
+    }
+}
+struct editSubjectSheet: View{
+    @Bindable var subject: Subject
+    @Environment(\.dismiss) private var dismiss
+    var body: some View{
+        NavigationStack{
+            VStack(spacing: 20) {
+                TextField("Enter new Subject Name", text: $subject.name)
+                    .padding(10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.gray.opacity(0.15))
+                    )
+
+                TextField("Credit", value: $subject.credit, format: .number)
+                    .keyboardType(.decimalPad)
+                    .padding(10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.gray.opacity(0.15))
+                    )
+
+                TextField("Enter Grade", text: $subject.grade)
+                    .padding(10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.gray.opacity(0.15))
+                    )
+                Spacer()
+            }
+            .padding(.top, 30)
+            .padding(.horizontal)
+            .navigationBarBackButtonHidden(true)
+            .toolbar{
+                ToolbarItem(placement: .topBarLeading){
+                    Button{
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundStyle(Color("BGColor"))
+                            .font(.system(size: 20, weight: .semibold))
+                    }
+                }
+                ToolbarItem(placement: .principal){
+                    Text("Edit Subject")
+                        .foregroundStyle(Color("BGColor"))
+                        .font(.system(size: 20, weight: .semibold))
+                }
+                ToolbarItem(placement: .topBarTrailing){
+                    Button{
+                        dismiss()
+                    } label: {
+                        Text("Done")
                             .foregroundStyle(Color("BGColor"))
                             .font(.system(size: 20, weight: .semibold))
                     }
