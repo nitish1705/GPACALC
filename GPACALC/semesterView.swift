@@ -50,8 +50,11 @@ struct semesterView: View {
                     .ignoresSafeArea()
 
                 VStack(spacing: 16) {
-
-                    Text("GPA: 0.00")
+                    let gpa = calculateGPA(
+                        subjects: semester.subjects,
+                        grades: semester.grades
+                    )
+                    Text(String(format: "%.2f", gpa))
                         .font(.title2)
                         .fontWeight(.semibold)
                         .padding()
@@ -221,13 +224,20 @@ struct addSubjectSheet: View {
                                 .fill(Color.gray.opacity(0.15))
                         )
 
-                    TextField("Enter Grade", text: $newGrade)
-                        .padding(10)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.gray.opacity(0.15))
-                        )
-
+                    Picker("Select Grade", selection: $newGrade) {
+                        Text("Select Grade").tag("")
+                        ForEach(semester.grades) { grade in
+                            Text(grade.grade)
+                                .tag(grade.grade)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .padding(10)
+                    .frame(maxWidth: .infinity)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.gray.opacity(0.15))
+                    )
                     Spacer()
                 }
                 .padding(.top, 30)

@@ -18,8 +18,8 @@ struct ContentView: View {
             VStack {
                 HStack {
                     VStack(alignment: .leading, spacing: 14) {
-
-                        Text("0.00")
+                        let cgpa = calculateCGPA(semesters: semesters)
+                        Text(String(format: "%.2f", cgpa))
                             .font(.system(size: 44, weight: .bold))
 
                         Text("Cumulative CGPA")
@@ -27,8 +27,10 @@ struct ContentView: View {
                             .opacity(0.9)
 
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("Total Credits: 0.0")
-                            Text("Credits Scored: 0.0")
+                            let totalCredits = calculateTotalCredits2(semesters: semesters)
+                            let scoredCredits = calculateScoredCredits2(semesters: semesters)
+                            Text("Total Credits: \(String(format: "%.1f", totalCredits))")
+                            Text("Credits Scored: \(String(format: "%.1f", scoredCredits))")
                         }
                         .font(.subheadline)
                         .opacity(0.8)
@@ -136,6 +138,18 @@ struct ContentView: View {
 
 @ViewBuilder
 func semesterCard(semester: semesterDetails) -> some View {
+    
+    let gpa = calculateGPA(
+        subjects: semester.subjects,
+        grades: semester.grades
+    )
+    let scoredCredits = calculateScoredCredits(
+        subjects: semester.subjects,
+        grades: semester.grades
+    )
+    let totalCredits = semester.subjects.reduce(0) { $0 + $1.credit }
+    
+    
     HStack {
 
         VStack(alignment: .leading, spacing: 10) {
@@ -143,10 +157,10 @@ func semesterCard(semester: semesterDetails) -> some View {
                 .font(.title3)
                 .fontWeight(.semibold)
 
-            Text("Total Credits: 0.0")
+            Text("Total Credits: \(String(format: "%.1f", totalCredits))")
                 .foregroundStyle(.secondary)
 
-            Text("Scored Credits: 0.0")
+            Text("Scored Credits: \(String(format: "%.1f", scoredCredits))")
                 .foregroundStyle(.secondary)
         }
         Spacer()
@@ -155,7 +169,7 @@ func semesterCard(semester: semesterDetails) -> some View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
-            Text("0.00")
+            Text(String(format: "%.2f", gpa))
                 .font(.system(size: 32, weight: .bold))
                 .foregroundStyle(Color("BGColor"))
         }
