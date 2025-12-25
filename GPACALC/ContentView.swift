@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @State private var currSemester: semesterDetails? = nil
     @State private var semesterCount: Int = 0
+    @State private var goToSettings = false
 
     var body: some View {
         NavigationStack {
@@ -121,7 +122,9 @@ struct ContentView: View {
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button { } label: {
+                    Button {
+                        goToSettings = true
+                    } label: {
                         Image(systemName: "gearshape.fill")
                             .foregroundStyle(Color("BGColor"))
                             .font(.system(size: 20, weight: .semibold))
@@ -130,6 +133,9 @@ struct ContentView: View {
             }
             .fullScreenCover(item: $currSemester) { semester in
                 semesterView(semester: semester)
+            }
+            .navigationDestination(isPresented: $goToSettings){
+                Settings()
             }
         }
     }
