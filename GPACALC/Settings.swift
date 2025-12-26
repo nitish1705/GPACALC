@@ -17,9 +17,9 @@ struct Settings: View {
     }
 
     @State private var selectedAppearance: Appearance = .light
+    @State private var showInfo = false
 
     var body: some View {
-        NavigationStack {
             ZStack {
                 Color.gray.opacity(0.15).ignoresSafeArea()
 
@@ -62,11 +62,14 @@ struct Settings: View {
                     )
                     .padding(.horizontal)
                     VStack(spacing: 20){
-                        menuButtons(Icon: "star.fill", title: "Grade Settings", about: "Configure your grading System", sizes: 14)
+                        menuButtons(Icon: "star.fill", title: "Grade Settings", about: "Configure your grading System", sizes: 14, colors: Color("BGColor"))
+                            {
+                                showInfo = true
+                            }
                         Divider()
-                        menuButtons(Icon: "questionmark.circle", title: "Help & Tutorial", about: "Learn how to use the app", sizes: 18)
+                        menuButtons(Icon: "questionmark.circle", title: "Help & Tutorial", about: "Learn how to use the app", sizes: 18, colors: Color.blue)
                         Divider()
-                        menuButtons(Icon: "questionmark.circle", title: "Help & Tutorial", about: "Learn how to use the app", sizes: 18)
+                        menuButtons(Icon: "party.popper", title: "What's New", about: "Check out the latest features", sizes: 15, colors: Color.green)
                     }
                     .padding()
                     .frame(maxWidth: 360)
@@ -77,7 +80,17 @@ struct Settings: View {
                     .padding(.top, 30)
                     Spacer()
                 }
-                
+                .alert("ⓘ Note!", isPresented: $showInfo){
+                    Button(role: .close) {
+                        
+                    } label : {
+                        Text("Close")
+                            .foregroundStyle(Color("BGColor"))
+                    }
+                } message: {
+                    Text("You can already change the grading system inside each semester, please go to any one of the semester to apply the changes.")
+                }
+                .navigationBarBackButtonHidden()
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         Text("Settings")
@@ -93,7 +106,6 @@ struct Settings: View {
                         }
                     }
                 }
-            }
         }
     }
     @ViewBuilder
@@ -140,14 +152,16 @@ struct Settings: View {
         Icon: String,
         title: String,
         about: String,
-        sizes: CGFloat
+        sizes: CGFloat,
+        colors: Color,
+        action: (() -> Void)? = nil
     ) -> some View {
         Button{
-            
+            action?()
         } label: {
             HStack{
                 Image(systemName: Icon)
-                    .foregroundStyle(Color.blue)
+                    .foregroundStyle(colors)
                     .font(.system(size: 35))
                     .padding(.trailing, 10)
                 
