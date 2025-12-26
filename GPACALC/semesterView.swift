@@ -34,19 +34,18 @@ struct semesterView: View {
                 Text(subject.grade.isEmpty ? "-" : subject.grade)
                     .frame(width: 40)
             }
-            Divider()
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
+                .fill(Color(.secondarySystemBackground))
         )
     }
 
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.gray.opacity(0.15)
+                Color(.systemBackground)
                     .ignoresSafeArea()
 
                 VStack(spacing: 16) {
@@ -54,16 +53,19 @@ struct semesterView: View {
                         subjects: semester.subjects,
                         grades: semester.grades
                     )
-                    Text(String(format: "%.2f", gpa))
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .padding()
-                        .frame(width: 350, height: 100)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.white)
-                        )
-                        .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+                    HStack{
+                        Text("GPA: ")
+                            .font(.title)
+                        Text(String(format: "%.2f", gpa))
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color("BGColor"))
+                    }
+                    .frame(width: 350, height: 100)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color(.secondarySystemBackground))
+                    )
 
                     VStack(spacing: 0) {
                         HStack {
@@ -74,9 +76,9 @@ struct semesterView: View {
                             Text("Grade")
                         }
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color("BGColor"))
                         .padding()
-                        .background(Color.white)
+                        .background(Color(.systemBackground))
 
                         Divider()
 
@@ -102,6 +104,7 @@ struct semesterView: View {
                                     subjectRow(subject)
                                         .listRowInsets(EdgeInsets())
                                         .listRowSeparator(.hidden)
+                                        .padding(5)
                                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
 
                                             Button {
@@ -130,7 +133,7 @@ struct semesterView: View {
                     .frame(width: 350, height: 530)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.white)
+                            .fill(Color(.systemBackground))
                             .shadow(color: .black.opacity(0.08), radius: 4, y: 2)
                     )
 

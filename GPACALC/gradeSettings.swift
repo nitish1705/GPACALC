@@ -24,18 +24,16 @@ struct gradeSettings: View {
                 Text(String(format: "%.1f", grade.points))
                     .frame(width: 50)
             }
-            Divider()
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
+                .fill(Color(.secondarySystemBackground))
         )
     }
     var body: some View {
-        NavigationStack{
             ZStack{
-                Color.gray.opacity(0.15)
+                Color(.systemBackground)
                     .ignoresSafeArea()
                 VStack(spacing: 16){
                     VStack{
@@ -69,6 +67,7 @@ struct gradeSettings: View {
                                     gradeRow(grade)
                                         .listRowInsets(EdgeInsets())
                                         .listRowSeparator(.hidden)
+                                        .padding(5)
                                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                             Button {
                                                 gradeToEdit = grade
@@ -97,7 +96,7 @@ struct gradeSettings: View {
                     .frame(width: 333, height: 600)
                     .background{
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.white)
+                            .fill(Color(.systemBackground))
                             .shadow(color: .black.opacity(0.08), radius: 4, y: 2)
                     }
                     .padding(.top, -70)
@@ -169,7 +168,6 @@ struct gradeSettings: View {
                         .presentationDetents([.height(350)])
                 }
             }
-        }
     }
 }
 

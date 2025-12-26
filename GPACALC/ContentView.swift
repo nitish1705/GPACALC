@@ -77,12 +77,6 @@ struct ContentView: View {
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .shadow(
-                            color: .black.opacity(0.25),
-                            radius: 12,
-                            x: 0,
-                            y: 6
-                        )
                 )
                 Text("Your Semesters")
                     .foregroundStyle(.secondary)
@@ -184,8 +178,7 @@ func semesterCard(semester: semesterDetails) -> some View {
     .frame(maxWidth: .infinity)
     .background(
         RoundedRectangle(cornerRadius: 20)
-            .fill(Color(.systemBackground))
-            .shadow(color: .black.opacity(0.1), radius: 6, y: 3)
+            .fill(Color(.secondarySystemBackground))
     )
 }
 
