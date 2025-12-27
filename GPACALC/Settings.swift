@@ -12,6 +12,8 @@ struct Settings: View {
 
     @State private var selectedAppearance: Appearance = .light
     @State private var showInfo = false
+    @State private var showGuide = false
+    @State private var showNew = false
 
     var body: some View {
         ZStack {
@@ -75,7 +77,9 @@ struct Settings: View {
                         about: "Learn how to use the app",
                         sizes: 18,
                         colors: .blue
-                    )
+                    ){
+                        showGuide = true
+                    }
 
                     Divider()
 
@@ -85,7 +89,9 @@ struct Settings: View {
                         about: "Check out the latest features",
                         sizes: 15,
                         colors: .green
-                    )
+                    ){
+                        showNew = true
+                    }
                 }
                 .padding()
                 .frame(maxWidth: 360)
@@ -102,6 +108,14 @@ struct Settings: View {
             } message: {
                 Text("You can change the grading system inside any semester.")
             }
+            .sheet(isPresented: $showGuide){
+                HelpGuideView()
+            }
+            .sheet(isPresented: $showNew){
+                newSheet()
+                    .presentationDetents([.medium, .large])
+            }
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Settings")
@@ -220,6 +234,54 @@ struct Settings: View {
     }
 }
 
+struct newSheet: View {
+    
+    @Environment(\.dismiss) private var dismiss
+
+    func bullet(_ text: String) -> some View {
+        HStack(alignment: .top) {
+            Text("•")
+            Text(text)
+        }
+    }
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 20) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        bullet("The App is now available on the App Store!")
+                        bullet("Major UI improvements across the app.")
+                        bullet("Each semester now has its own grading system.")
+                        bullet("Dark mode support added.")
+                        bullet("Improved performance and UI consistency.")
+                    }
+                    .padding()
+
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Got it!")
+                            .foregroundColor(.white)
+                            .frame(maxWidth: 200)
+                            .frame(height: 50)
+                            .background(Color("BGColor"))
+                            .cornerRadius(12)
+                    }
+                    .padding(.bottom, 20)
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("What's New")
+                        .font(.title)
+                        .bold()
+                }
+            }
+        }
+    }
+}
+
 #Preview {
-    Settings()
+    newSheet()
 }

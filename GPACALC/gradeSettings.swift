@@ -15,6 +15,7 @@ struct gradeSettings: View {
     
     @State private var gradeToAdd: semesterDetails? = nil
     @State private var gradeToEdit: gradeSettingsModel? = nil
+    @State private var guideShow = false
     
     func gradeRow(_ grade: gradeSettingsModel) -> some View{
         VStack{
@@ -151,7 +152,7 @@ struct gradeSettings: View {
                     }
                     ToolbarItem(placement: .topBarTrailing){
                         Button{
-                            
+                            guideShow = true
                         } label: {
                             Image(systemName: "questionmark.circle")
                                 .foregroundStyle(Color("BGColor"))
@@ -166,6 +167,9 @@ struct gradeSettings: View {
                 .sheet(item: $gradeToEdit){grade in
                     editingGrade(grade: grade)
                         .presentationDetents([.height(350)])
+                }
+                .sheet(isPresented: $guideShow){
+                    HelpGuideView()
                 }
             }
     }
