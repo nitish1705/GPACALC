@@ -6,11 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		6871DD132F29B198007044F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68CFA5CE2EF9B27E00F2D6D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68CFA5D52EF9B27E00F2D6D8;
+			remoteInfo = GPACALC;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		6871DD0D2F29B198007044F4 /* GPACALCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPACALCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68CFA5D62EF9B27E00F2D6D8 /* GPACALC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPACALC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		6871DD0E2F29B198007044F4 /* GPACALCUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = GPACALCUITests;
+			sourceTree = "<group>";
+		};
 		68CFA5D82EF9B27E00F2D6D8 /* GPACALC */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = GPACALC;
@@ -19,6 +35,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6871DD0A2F29B198007044F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68CFA5D32EF9B27E00F2D6D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				68CFA5D82EF9B27E00F2D6D8 /* GPACALC */,
+				6871DD0E2F29B198007044F4 /* GPACALCUITests */,
 				68CFA5D72EF9B27E00F2D6D8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				68CFA5D62EF9B27E00F2D6D8 /* GPACALC.app */,
+				6871DD0D2F29B198007044F4 /* GPACALCUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +73,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6871DD0C2F29B198007044F4 /* GPACALCUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6871DD172F29B198007044F4 /* Build configuration list for PBXNativeTarget "GPACALCUITests" */;
+			buildPhases = (
+				6871DD092F29B198007044F4 /* Sources */,
+				6871DD0A2F29B198007044F4 /* Frameworks */,
+				6871DD0B2F29B198007044F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6871DD142F29B198007044F4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6871DD0E2F29B198007044F4 /* GPACALCUITests */,
+			);
+			name = GPACALCUITests;
+			packageProductDependencies = (
+			);
+			productName = GPACALCUITests;
+			productReference = 6871DD0D2F29B198007044F4 /* GPACALCUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		68CFA5D52EF9B27E00F2D6D8 /* GPACALC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68CFA5E12EF9B27F00F2D6D8 /* Build configuration list for PBXNativeTarget "GPACALC" */;
@@ -80,6 +128,10 @@
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
+					6871DD0C2F29B198007044F4 = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 68CFA5D52EF9B27E00F2D6D8;
+					};
 					68CFA5D52EF9B27E00F2D6D8 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
@@ -100,11 +152,19 @@
 			projectRoot = "";
 			targets = (
 				68CFA5D52EF9B27E00F2D6D8 /* GPACALC */,
+				6871DD0C2F29B198007044F4 /* GPACALCUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6871DD0B2F29B198007044F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68CFA5D42EF9B27E00F2D6D8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +175,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6871DD092F29B198007044F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68CFA5D22EF9B27E00F2D6D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +191,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6871DD142F29B198007044F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68CFA5D52EF9B27E00F2D6D8 /* GPACALC */;
+			targetProxy = 6871DD132F29B198007044F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		6871DD152F29B198007044F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MUHH9CWF8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nitishm.GPACALCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GPACALC;
+			};
+			name = Debug;
+		};
+		6871DD162F29B198007044F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MUHH9CWF8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nitishm.GPACALCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GPACALC;
+			};
+			name = Release;
+		};
 		68CFA5DF2EF9B27F00F2D6D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -313,6 +428,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6871DD172F29B198007044F4 /* Build configuration list for PBXNativeTarget "GPACALCUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6871DD152F29B198007044F4 /* Debug */,
+				6871DD162F29B198007044F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		68CFA5D12EF9B27E00F2D6D8 /* Build configuration list for PBXProject "GPACALC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

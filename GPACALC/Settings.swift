@@ -120,6 +120,7 @@ struct Settings: View {
                 ToolbarItem(placement: .principal) {
                     Text("Settings")
                         .font(.system(size: 30, weight: .semibold))
+                        .accessibilityIdentifier("settingsTitle")
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -128,6 +129,7 @@ struct Settings: View {
                         Image(systemName: "house.fill")
                             .foregroundStyle(.primary)
                     }
+                    .accessibilityIdentifier("homeButton")
                 }
             }
             .onAppear {

@@ -113,6 +113,7 @@ struct ContentView: View {
                     Text("GPA & CGPA Calculator")
                         .font(.title2)
                         .fontWeight(.semibold)
+                        .accessibilityIdentifier("hometitle")
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -123,6 +124,7 @@ struct ContentView: View {
                             .foregroundStyle(Color("BGColor"))
                             .font(.system(size: 20, weight: .semibold))
                     }
+                    .accessibilityIdentifier("settingsNavBarButton")
                 }
             }
             .fullScreenCover(item: $currSemester) { semester in
