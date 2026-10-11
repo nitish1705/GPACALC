@@ -104,10 +104,6 @@ Scored credits only count subjects with valid grades defined in the grading syst
 
 Each semester can have its own grading scale. This allows flexibility for institutions with different systems. Grades are matched when calculating GPA—if a subject has a grade not in the scale, it is ignored.
 
-### UI Tests
-
-The `GPACALCUITests` suite verifies navigation between home and settings screens using accessibility identifiers.
-
 ## License
 
 This project is licensed under the MIT License — see the LICENSE file for details.
